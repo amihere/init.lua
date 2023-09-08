@@ -1,19 +1,22 @@
-local lsp = require("lsp-zero")
-
-lsp.preset("recommended")
+local lsp = require("lsp-zero").preset({})
 
 lsp.ensure_installed({
-  'rust_analyzer',
   'svelte',
   'lua_ls',
+  'elixirls',
   'pylsp',
   'java_language_server',
   'html',
+  'stylua', -- lua formatter
+  'htmlbeautifier',
+  'ruff',
+  'clang_format',
+  'prettier',
+  'eslint_d'
 })
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
-
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -57,8 +60,8 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 -- my setups
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-require'lspconfig'.svelte.setup{}
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require('lspconfig').svelte.setup {}
 
 lsp.setup()
 
