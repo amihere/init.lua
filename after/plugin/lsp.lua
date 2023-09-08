@@ -56,6 +56,10 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
+-- my setups
+-- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require'lspconfig'.svelte.setup{}
+
 lsp.setup()
 
 vim.diagnostic.config({
