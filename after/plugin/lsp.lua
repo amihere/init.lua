@@ -7,12 +7,6 @@ lsp.ensure_installed({
   'pylsp',
   'java_language_server',
   'html',
-  'stylua', -- lua formatter
-  'htmlbeautifier',
-  'ruff',
-  'clang_format',
-  'prettier',
-  'eslint_d'
 })
 
 -- Fix Undefined global 'vim'
