@@ -2,7 +2,9 @@ local lsp = require("lsp-zero").preset({})
 
 lsp.ensure_installed({
   'svelte',
+  'emmet_ls',
   'lua_ls',
+  'eslint',
   'elixirls',
   'pylsp',
   'java_language_server',
@@ -51,11 +53,16 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+    vim.lsp.buf.format()
+  end, { desc = 'Format current buffer with LSP' })
 end)
 
 -- my setups
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 require('lspconfig').svelte.setup {}
+require('lspconfig').eslint.setup {}
+require('lspconfig').html.setup {}
 
 lsp.setup()
 
